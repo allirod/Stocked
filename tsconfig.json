@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "target": "es6"
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
