@@ -1,2 +1,4 @@
 node_modules
 .prettierignore
+planning.js
+dist

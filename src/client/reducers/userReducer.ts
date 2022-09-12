@@ -1,7 +1,7 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-  loggedIn: false,
+  loggedIn: true,
 };
 
 const userReducer = (
