@@ -1,0 +1,19 @@
+@import './variables.scss';
+
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: $s-green;
+    left: 0px;
+    height: 100vh
+
+}
+
+.nav-link {
+    color: $s-grey;
+    text-decoration: none;
+    font-family: Roboto;
+    padding: 4px;
+}
