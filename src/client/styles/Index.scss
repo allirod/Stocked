@@ -1,0 +1,12 @@
+@import './variables.scss';
+
+html {
+    background-color: $s-cream;
+    color: $s-grey;
+}
+
+body {
+    height: 100%;
+    margin: 0px;
+    font-family: Roboto;
+}
