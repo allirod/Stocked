@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import '../styles/NavBar.scss';
+
 const NavBar = () => {
     const linkMaker = (endPoint: string, display: string) => {
         return <Link to={endPoint} className='nav-link'>{display}</Link>
