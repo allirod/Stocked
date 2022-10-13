@@ -6,10 +6,18 @@ import { v4 as genuuid } from 'uuid';
 import dotenv from 'dotenv';
 dotenv.config();
 
+import cors from 'cors';
+
 import * as redis from 'redis';
 import connectRedis from 'connect-redis';
 let RedisStore = connectRedis(session);
-let redisClient = redis.createClient();
+let redisClient = redis.createClient({ legacyMode: true });
+redisClient.on('error', function (err) {
+  console.log('Could not establish a connection with redis. ' + err);
+});
+redisClient.on('connect', function (err) {
+  console.log('Connected to redis successfully');
+});
 
 import helmet from 'helmet';
 
@@ -18,6 +26,7 @@ const port = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+//app.use(cors());
 
 app.use(session({
   name: 'stockedcookie',
@@ -34,13 +43,21 @@ app.use(session({
   store: new RedisStore({client: redisClient as any}),
   resave: false
 }))
+
+// extend the express-session middleware module to add additional session details
+declare module 'express-session'{
+  interface SessionData {
+    username: string
+  }
+}
+
 app.use(helmet());
 
 app.use('/dist', express.static(path.join(__dirname, '../../dist')));
 app.use(express.static(path.join(__dirname, '../../public')));
 //app.use(express.static(path.join(__dirname, '../client')));
 
-app.use('/api', router)
+app.use('/api', router);
 
 app.use((req, res) => res.status(404).json('Page not found'));
 
@@ -61,4 +78,7 @@ app.use(
 
 app.listen(port, () => console.log(`Server listening on ${port}`));
 
+export const client = redisClient;
 export default app;
+
+

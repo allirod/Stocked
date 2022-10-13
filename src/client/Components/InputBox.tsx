@@ -9,7 +9,7 @@ const InputBox = (props: InputBoxProps) => {
     return (
         <div>
             <label htmlFor={props.id}>{props.label}</label>
-            <input type={htmlType} id={props.id} ref={props.htmlRef}></input>
+            <input type={htmlType} id={props.id} onChange={props.onChange}></input>
         </div>
     )
 }

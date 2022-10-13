@@ -1,14 +1,21 @@
-import { MutableRefObject } from "react";
+import { MutableRefObject, ReactComponentElement } from "react";
 
 export type AppProps = {};
 
-export type LogInProps = {};
+export type LogInProps = {
+    loggedIn: boolean,
+    setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
+};
 
-export type SignUpProps = {};
+export type SignUpProps = {
+    loggedIn: boolean,
+    setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
+};
 
 export type InputBoxProps = {
     type?: 'text' | 'password',
     label: string,
     id: string,
-    htmlRef: MutableRefObject<null | HTMLInputElement>,
+    value: string,
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }

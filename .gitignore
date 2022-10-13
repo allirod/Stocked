@@ -3,3 +3,4 @@ node_modules
 planning.js
 dist
 .env
+dump.rdb
