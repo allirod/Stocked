@@ -1,8 +1,20 @@
-const { Pool } = require('pg');
+import pg, { Pool, QueryResult } from 'pg';
+import dotenv from 'dotenv'
+dotenv.config()
 
-const DB_URI = process.env.DB_URI;
+const URI = process.env.DB_URI;
 
+const pool = new Pool({
+    connectionString: URI
+})
 
+const db = {
+    query: function(queryString: string, params?: any): Promise<QueryResult<any>> {
+        return pool.query(queryString, params);
+    }
+}
+
+export default db;
 /*
 CREATE TABLE users (
     username varchar(15) PRIMARY KEY,
